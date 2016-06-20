@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>farm-vue</title>
+    <meta name="viewport" content="target-densitydpi=device-dpi,width=1334">
+    <script>
+        function changeViewport() {
+          var u = navigator.userAgent;
+          var isiOS = !!u.match(/\(i[^;]+;( U;)? CPU.+Mac OS X/); //ios终端
+          
+          if (window.orientation == 90 || window.orientation == -90 && isiOS) {  
+            var windowWidth = window.screen.height;
+          } 
+
+          else {
+            var windowWidth = window.screen.width;
+          }
+            
+          if (windowWidth < 1334) {
+              var ratio = windowWidth / 1334;
+              var metas = document.querySelectorAll("meta[name=viewport]");
+              for (var i in metas) {
+                  if (typeof metas[i].setAttribute == 'function') {
+                      metas[i].setAttribute('content', 'width=1334, initial-scale=' + ratio + ', maximum-scale=' + ratio + '');
+                  }
+              }
+          }
+        }
+        window.addEventListener("onorientationchange" in window ? "orientationchange" : "resize", changeViewport, false);
+    </script>
+  </head>
+  <body>
+    <app></app>
+    <!-- built files will be auto injected -->
+  </body>
+</html>
