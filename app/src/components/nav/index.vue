@@ -2,7 +2,7 @@
   <nav class="nav">
     <ul>
       <li @click="hideSence()" id="nav-sence">查看实景</li>
-      <li>我要订餐</li>
+      <li><a href="http://114.55.128.3/home.html ">我要订餐</a></li>
       <li @click="hideCenter()" id="nav-center">个人中心</li>
     </ul>
   </nav>
@@ -24,7 +24,7 @@ export default {
 <style>
 .nav{
   position: absolute;
-  right: 37px;
+  left: 991px;
   top: 24px;
 }
 .nav ul{
@@ -34,14 +34,17 @@ export default {
 .nav li{
   text-indent: -999em;
 }
+.nav li a{
+  display: block;
+}
 .nav li:nth-child(1){
   width: 85px;
   height: 112px;
   background-image: url(img/icon1.png?__sprite);
   margin-right: 13px;
 }
-.nav li:nth-child(2){
-  width: 93px;
+.nav li:nth-child(2) a{
+  width: 96px;
   height: 110px;
   background-image: url(img/icon2.png?__sprite);
   margin-right: 33px;

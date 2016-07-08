@@ -1,18 +1,12 @@
 <!DOCTYPE html><html><head><meta charset=utf-8><title>farm-vue</title><meta name=viewport content="target-densitydpi=device-dpi,width=1334"><script>function changeViewport() {
           var u = navigator.userAgent;
-          var isAndroid = u.indexOf('Android') > -1 || u.indexOf('Adr') > -1; //android终端
           var isiOS = !!u.match(/\(i[^;]+;( U;)? CPU.+Mac OS X/); //ios终端
           
-          if (isiOS) {
-            if (window.orientation == 180 || window.orientation == 0) {  
-              var windowWidth = window.screen.width;    
-            }  
-            if (window.orientation == 90 || window.orientation == -90) {  
-              var windowWidth = window.screen.height;
-            } 
-          }
+          if (window.orientation == 90 || window.orientation == -90 && isiOS) {  
+            var windowWidth = window.screen.height;
+          } 
 
-          if (isAndroid) {
+          else {
             var windowWidth = window.screen.width;
           }
             
@@ -26,4 +20,4 @@
               }
           }
         }
-        window.addEventListener("onorientationchange" in window ? "orientationchange" : "resize", changeViewport, false);</script></head><body><app></app><script type=text/javascript src=static/js/manifest.d086e7457847a217478d.js></script><script type=text/javascript src=static/js/vendor.62e7a19dce722699bcb0.js></script><script type=text/javascript src=static/js/app.5ebd0bfc1bac7efe01df.js></script></body></html>
+        window.addEventListener("onorientationchange" in window ? "orientationchange" : "resize", changeViewport, false);</script></head><body><app></app><script type=text/javascript src=static/js/manifest.e4189051cc4f6f973f00.js></script><script type=text/javascript src=static/js/vendor.a07991b4e351219a1ab3.js></script><script type=text/javascript src=static/js/app.2b91e6cf8aa1030b9815.js></script></body></html>

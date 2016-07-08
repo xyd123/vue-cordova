@@ -25,6 +25,10 @@ export default {
       // its initial state.
       data: [
         {
+          name: '播种',
+          type: 'sow'
+        },
+        {
           name: '采集',
           type: 'collect'
         },
@@ -50,7 +54,7 @@ export default {
 <style>
 .menu{
   position: absolute;
-  right: 52px;
+  left: 799px;
   top: 624px;
 }
 .menu ul{
@@ -66,15 +70,18 @@ export default {
   transform:scale(1.2);
 }
 .menu li:nth-child(1){
-  background-image: url(img/icon1.png?__sprite);
+  background-image: url(img/icon0.png?__sprite);
 }
 .menu li:nth-child(2){
-  background-image: url(img/icon2.png?__sprite);
+  background-image: url(img/icon1.png?__sprite);
 }
 .menu li:nth-child(3){
-  background-image: url(img/icon3.png?__sprite);
+  background-image: url(img/icon2.png?__sprite);
 }
 .menu li:nth-child(4){
+  background-image: url(img/icon3.png?__sprite);
+}
+.menu li:nth-child(5){
   background-image: url(img/icon4.png?__sprite);
 }
 </style>

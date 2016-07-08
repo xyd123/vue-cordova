@@ -10,6 +10,8 @@
     <reclaim></reclaim>
     <center></center>
     <prop></prop>
+    <house></house>
+    <sow></sow>
     <nav1></nav1>
 </template>
 
@@ -25,6 +27,8 @@ import sence from './components/sence/index'
 import reclaim from './components/reclaim/index'
 import center from './components/center/index'
 import prop from './components/prop/index'
+import house from './components/house/index'
+import sow from './components/sow/index'
 
 export default {
   components: {
@@ -38,7 +42,9 @@ export default {
     sence,
     reclaim,
     center,
-    prop
+    prop,
+    house,
+    sow
   }
 }
 </script>

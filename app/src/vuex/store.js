@@ -11,11 +11,15 @@ const state = {
   isHideReclaim: true,
   isHideCenter: true,
   isHideProp: true,
+  isHideSow: true,
   isCollect: false,
   isBasket: false,
   isChemical: false,
   isPickaxe: false,
-  isActive: -1
+  isSow: false,
+  isActive: -1,
+  house: 'house1',
+  sowItem: ''
 }
 
 const store = new Vuex.Store({

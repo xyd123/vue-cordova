@@ -3,7 +3,7 @@
     <ul v-for="items in data">
       <li v-for="item in items.cols" @click="change(item)">
         <div class="farm-floor" v-show="item.hasFloor" :class="{'empty': item.isFloorEmpty}"></div>
-        <div :class="item.object" v-show="item.isShow"></div>
+        <img :src="item.src" v-show="item.isShow"></div>
       </li>
     </ul>
   </section>
@@ -16,7 +16,9 @@ export default {
       isCollect: state => state.isCollect,
       isBasket: state => state.isBasket,
       isChemical: state => state.isChemical,
-      isPickaxe: state => state.isPickaxe
+      isPickaxe: state => state.isPickaxe,
+      isSow: state => state.isSow,
+      sowItem: state => state.sowItem
     }
   },
   methods: {
@@ -27,12 +29,17 @@ export default {
       } else if (this.isBasket && item.isShow) {
         window.alert('已收获至仓库')
         item.isShow = false
-      } else if (this.isChemical) {
+      } else if (this.isChemical && item.isFloorEmpty) {
+        item.isFloorEmpty = !item.isFloorEmpty
         window.alert('已施肥')
       } else if (this.isPickaxe && !item.isFloorEmpty) {
         item.isShow = false
         item.isFloorEmpty = true
-      } else if (item.isShow) {
+      } else if (this.isSow && !item.isShow && !item.isFloorEmpty) {
+        item.isShow = true
+        item.src = this.sowItem.thumb
+        item.name = this.sowItem.name
+      } else if (item.isShow && !this.isCollect && !this.isBasket && !this.isChemical && !this.isPickaxe && !this.isSow) {
         var confirm = window.confirm('是否要预定此物品')
         if (confirm === true) {
           window.alert('预定成功')
@@ -50,55 +57,26 @@ export default {
         {
           cols: [
             {
-              name: '西红柿',
-              object: 'farm-persimmon',
-              isShow: true,
-              hasFloor: false,
-              isFloorEmpty: false
-            }, {
-              name: '西红柿',
-              object: 'farm-persimmon',
-              isShow: true,
-              hasFloor: false,
-              isFloorEmpty: false
-            }, {
-              name: '西红柿',
-              object: 'farm-persimmon',
-              isShow: true,
-              hasFloor: false,
-              isFloorEmpty: false
-            }, {
-              name: '西红柿',
-              object: 'farm-persimmon',
-              isShow: true,
-              hasFloor: false,
-              isFloorEmpty: false
-            }
-          ]
-        },
-        {
-          cols: [
-            {
-              name: '卷心菜',
-              object: 'farm-cabbage',
+              name: '橙子',
+              src: 'http://img0.fengqucdn.com/cmsres/20160620/a71df434-8698-4c9a-8f85-5c8955323b7f.png',
               isShow: true,
               hasFloor: true,
               isFloorEmpty: false
             }, {
-              name: '卷心菜',
-              object: 'farm-cabbage',
+              name: '橙子',
+              src: 'http://img0.fengqucdn.com/cmsres/20160620/a71df434-8698-4c9a-8f85-5c8955323b7f.png',
               isShow: true,
               hasFloor: true,
               isFloorEmpty: false
             }, {
-              name: '卷心菜',
-              object: 'farm-cabbage',
+              name: '橙子',
+              src: 'http://img0.fengqucdn.com/cmsres/20160620/a71df434-8698-4c9a-8f85-5c8955323b7f.png',
               isShow: true,
               hasFloor: true,
               isFloorEmpty: false
             }, {
-              name: '卷心菜',
-              object: 'farm-cabbage',
+              name: '橙子',
+              src: 'http://img0.fengqucdn.com/cmsres/20160620/a71df434-8698-4c9a-8f85-5c8955323b7f.png',
               isShow: true,
               hasFloor: true,
               isFloorEmpty: false
@@ -109,25 +87,54 @@ export default {
           cols: [
             {
               name: '卷心菜',
-              object: 'farm-cabbage',
+              src: 'http://img0.fengqucdn.com/cmsres/20160620/025b6458-208e-4d63-b02e-116342bbaa06.png',
               isShow: true,
               hasFloor: true,
               isFloorEmpty: false
             }, {
               name: '卷心菜',
-              object: 'farm-cabbage',
+              src: 'http://img0.fengqucdn.com/cmsres/20160620/025b6458-208e-4d63-b02e-116342bbaa06.png',
               isShow: true,
               hasFloor: true,
               isFloorEmpty: false
             }, {
               name: '卷心菜',
-              object: 'farm-cabbage',
+              src: 'http://img0.fengqucdn.com/cmsres/20160620/025b6458-208e-4d63-b02e-116342bbaa06.png',
               isShow: true,
               hasFloor: true,
               isFloorEmpty: false
             }, {
               name: '卷心菜',
-              object: 'farm-cabbage',
+              src: 'http://img0.fengqucdn.com/cmsres/20160620/025b6458-208e-4d63-b02e-116342bbaa06.png',
+              isShow: true,
+              hasFloor: true,
+              isFloorEmpty: false
+            }
+          ]
+        },
+        {
+          cols: [
+            {
+              name: '卷心菜',
+              src: 'http://img0.fengqucdn.com/cmsres/20160620/025b6458-208e-4d63-b02e-116342bbaa06.png',
+              isShow: true,
+              hasFloor: true,
+              isFloorEmpty: false
+            }, {
+              name: '卷心菜',
+              src: 'http://img0.fengqucdn.com/cmsres/20160620/025b6458-208e-4d63-b02e-116342bbaa06.png',
+              isShow: true,
+              hasFloor: true,
+              isFloorEmpty: false
+            }, {
+              name: '卷心菜',
+              src: 'http://img0.fengqucdn.com/cmsres/20160620/025b6458-208e-4d63-b02e-116342bbaa06.png',
+              isShow: true,
+              hasFloor: true,
+              isFloorEmpty: false
+            }, {
+              name: '卷心菜',
+              src: 'http://img0.fengqucdn.com/cmsres/20160620/025b6458-208e-4d63-b02e-116342bbaa06.png',
               isShow: true,
               hasFloor: true,
               isFloorEmpty: false
@@ -138,25 +145,25 @@ export default {
           cols: [
             {
               name: '玉米',
-              object: 'farm-corn',
+              src: 'http://img0.fengqucdn.com/cmsres/20160620/3f70fa19-2e3f-4f36-a3d1-7884705bdf47.png',
               isShow: true,
               hasFloor: true,
               isFloorEmpty: false
             }, {
               name: '玉米',
-              object: 'farm-corn',
+              src: 'http://img0.fengqucdn.com/cmsres/20160620/3f70fa19-2e3f-4f36-a3d1-7884705bdf47.png',
               isShow: true,
               hasFloor: true,
               isFloorEmpty: false
             }, {
               name: '玉米',
-              object: 'farm-corn',
+              src: 'http://img0.fengqucdn.com/cmsres/20160620/3f70fa19-2e3f-4f36-a3d1-7884705bdf47.png',
               isShow: true,
               hasFloor: true,
               isFloorEmpty: false
             }, {
               name: '玉米',
-              object: 'farm-corn',
+              src: 'http://img0.fengqucdn.com/cmsres/20160620/3f70fa19-2e3f-4f36-a3d1-7884705bdf47.png',
               isShow: true,
               hasFloor: true,
               isFloorEmpty: false
@@ -167,25 +174,25 @@ export default {
           cols: [
             {
               name: '玉米',
-              object: 'farm-corn',
+              src: 'http://img0.fengqucdn.com/cmsres/20160620/3f70fa19-2e3f-4f36-a3d1-7884705bdf47.png',
               isShow: true,
               hasFloor: true,
               isFloorEmpty: false
             }, {
               name: '玉米',
-              object: 'farm-corn',
+              src: 'http://img0.fengqucdn.com/cmsres/20160620/3f70fa19-2e3f-4f36-a3d1-7884705bdf47.png',
               isShow: true,
               hasFloor: true,
               isFloorEmpty: false
             }, {
               name: '玉米',
-              object: 'farm-corn',
+              src: 'http://img0.fengqucdn.com/cmsres/20160620/3f70fa19-2e3f-4f36-a3d1-7884705bdf47.png',
               isShow: true,
               hasFloor: true,
               isFloorEmpty: false
             }, {
               name: '玉米',
-              object: 'farm-corn',
+              src: 'http://img0.fengqucdn.com/cmsres/20160620/3f70fa19-2e3f-4f36-a3d1-7884705bdf47.png',
               isShow: true,
               hasFloor: true,
               isFloorEmpty: false
@@ -196,25 +203,25 @@ export default {
           cols: [
             {
               name: '花',
-              object: 'farm-flower',
+              src: 'http://img0.fengqucdn.com/cmsres/20160620/690c4d5b-e416-4c28-94d6-f4e9510ea88d.png',
               isShow: true,
               hasFloor: true,
               isFloorEmpty: false
             }, {
               name: '花',
-              object: 'farm-flower',
+              src: 'http://img0.fengqucdn.com/cmsres/20160620/690c4d5b-e416-4c28-94d6-f4e9510ea88d.png',
               isShow: true,
               hasFloor: true,
               isFloorEmpty: false
             }, {
               name: '花',
-              object: 'farm-flower',
+              src: 'http://img0.fengqucdn.com/cmsres/20160620/690c4d5b-e416-4c28-94d6-f4e9510ea88d.png',
               isShow: true,
               hasFloor: true,
               isFloorEmpty: false
             }, {
               name: '花',
-              object: 'farm-flower',
+              src: 'http://img0.fengqucdn.com/cmsres/20160620/690c4d5b-e416-4c28-94d6-f4e9510ea88d.png',
               isShow: true,
               hasFloor: true,
               isFloorEmpty: false
@@ -229,38 +236,6 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style>
-  .farm-flower{
-  width: 122px;
-  height: 91px;
-  background-image: url(img/flower.png?__sprite);
-  position: absolute;
-  left: 50%;
-  top: 50%;
-  transform: translate(-50%,-50%);
-}
-.farm-corn{
-  width: 62px;
-  height: 67px;
-  background-image: url(img/corn.png?__sprite);
-  position: absolute;
-  left: 50%;
-  top: 50%;
-  transform: translate(-50%,-50%);
-}
-.farm-cabbage{
-  width: 73px;
-  height: 70px;
-  background-image: url(img/cabbage.png?__sprite);
-  position: absolute;
-  left: 50%;
-  top: 50%;
-  transform: translate(-50%,-50%);
-}
-.farm-persimmon{
-  width: 177px;
-  height: 154px;
-  background-image: url(img/persimmon.png?__sprite);
-}
 .farm-floor{
   width: 199px;
   height: 100px;
@@ -272,11 +247,12 @@ export default {
 
 .farm{
   display: flex;
-  align-items: flex-end;
-  padding-left: 200px;
+  padding-left: 213px;
+  padding-top: 66px;
 }
 .farm ul{
   transform: rotate(64deg);
+  position: absolute;
 }
 .farm li{
   transform: rotate(-64deg);
@@ -286,26 +262,32 @@ export default {
   height: 100px;
 }
 .farm ul:nth-child(1){
-  transform: rotate(64deg) translateY(-20px);
-}
-.farm ul:nth-child(1) li{
-  margin: -26px 0;
-  width: 177px;
-  height: 154px;
+
 }
 .farm ul:nth-child(2){
-  transform: rotate(64deg) translate(35px,91px)
+  left: 311px;
+  top: 117px;
 }
 .farm ul:nth-child(3){
-  transform: rotate(64deg) translate(35px,202px)
+  left: 409px;
+  top: 167px;
 }
 .farm ul:nth-child(4){
-  transform: rotate(64deg) translate(95px,269px)
+  left: 570px;
+  top: 249px;
 }
 .farm ul:nth-child(5){
-  transform: rotate(64deg) translate(95px,382px)
+  left: 671px;
+  top: 300px;
 }
 .farm ul:nth-child(6){
-  transform: rotate(64deg) translate(95px,493px);
+  left: 772px;
+  top: 349px;
+}
+.farm img{
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%,-65%);
 }
 </style>
